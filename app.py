@@ -12,11 +12,15 @@ messages = [{'role': 'system',
 
 client = OpenAI(
     # This is the default and can be omitted
-    api_key="ENTER API KEY HERE",
+    api_key="sk-proj-8riOJxXgXMf0P7uBTRZfT3BlbkFJrLMnTmNfMel1RqNN0z3Y",
 )
 
 
 app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return login()
 
 @app.route("/main")
 def ind():
