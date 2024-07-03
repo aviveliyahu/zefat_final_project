@@ -3,6 +3,9 @@ import os
 import openai
 from openai import OpenAI
 
+
+
+
 messages = [{'role': 'system', 
              'content': """
                 Make sure the answers are not over 500 tokens.you are a occupational therapy assistant that talks with an intern therapist and try to help him solve problems in a socratic method.
