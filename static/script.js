@@ -129,3 +129,11 @@ document.getElementById("save1").addEventListener("click", function () {
 	});
 	event.preventDefault();
 });
+
+document.getElementById('logoutForm').addEventListener('submit', function(event) {
+	event.preventDefault();  
+	fetch(this.action, { method: 'POST' })
+		.then(() => {
+			window.location.href = 'http://127.0.0.1:5000/'; 
+		});
+});
