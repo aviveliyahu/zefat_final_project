@@ -3,6 +3,7 @@ from datetime import datetime
 from llm.rag import *
 from llm.response import *
 from users.users import *
+import asyncio
 
 llm_model = "1"
 
@@ -37,7 +38,7 @@ def llm_choice():
          return jsonify({"response": "0"})
     
 @app.route("/get", methods=["GET", "POST"])
-def chat():
+async def chat():
     data = request.get_json()
     msg = data.get("msg")
 
@@ -45,12 +46,16 @@ def chat():
         return save_chat()
     else:
             input = msg
-        # if(input == "Save chat."):
-        #     return save_chat()
-        # else:
-            context = context_retrieve(input)
-            append_message(f"{input}, external data:{context}",role="user")
-            return get_Chat_response(messages,llm_model)
+            context_task = asyncio.to_thread(context_retrieve, input, "cases")
+            guidance_task = asyncio.to_thread(guidance_generation, input, llm_model)
+
+            context, guidance = await asyncio.gather(context_task, guidance_task)
+
+            articles = await asyncio.to_thread(context_retrieve, guidance, "articles")
+
+            await asyncio.to_thread(append_message, f"{input}, articles = {articles}, external data:{context}", role="user")
+            response = await asyncio.to_thread(get_Chat_response, messages, llm_model)
+            return response
 
 def save_chat():
     answer = "Chat saved!"

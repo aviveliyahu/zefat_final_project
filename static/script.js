@@ -6,39 +6,28 @@ function log(event) {
 	const minute = date.getMinutes();
 	const second = date.getSeconds();
 	const str_time = hour + ":" + minute + ":" + second;
-	let userIP = "{{ user_ip }}";
 	let id = parseInt(document.forms["id_form"]["id"].value);
-	// if (id === 2) {
-		console.log("User logged at " + str_time + " user ip is: " + userIP);
-		let form = document.forms['id_form'];
-        let formData = new FormData(form);
-        let selectedLLM = formData.get('llm');
-
-		fetch('/llm', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ user_id :id,msg: selectedLLM })
-		}).then(response => response.json()
-		).then(function (data) {
-			let path = data.response;
-			if (path==="0"){
-				console.log("User tried to log at " + str_time + " but failed, ID entered was: " + id + " user ip is: " + userIP);
-				alert("ID not found in the database, please try again.");
-				document.getElementById("input1").value = '';
-			}
-			else{
-				window.location.href = path;
-			}
-		})
-	// }
-	// else {
-	// 	console.log("User tried to log at " + str_time + " but failed, ID entered was: " + id + " user ip is: " + userIP);
-	// 	alert("ID not found in the database, please try again.");
-	// 	document.getElementById("input1").value = '';
-	// 	// return false;
-	// }
+	let form = document.forms['id_form'];
+    let formData = new FormData(form);
+    let selectedLLM = formData.get('llm');
+	fetch('/llm', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ user_id :id,msg: selectedLLM })
+	}).then(response => response.json()
+	).then(function (data) {
+		let path = data.response;
+		if (path==="0"){
+			console.log("User tried to log at " + str_time + " but failed, ID entered was: " + id);
+			alert("ID not found in the database, please try again.");
+			document.getElementById("input1").value = '';
+		}
+		else{
+			window.location.href = path;
+		}
+	})
 };
 
 
@@ -130,10 +119,11 @@ document.getElementById("save1").addEventListener("click", function () {
 	event.preventDefault();
 });
 
+
 document.getElementById('logoutForm').addEventListener('submit', function(event) {
 	event.preventDefault();  
 	fetch(this.action, { method: 'POST' })
 		.then(() => {
-			window.location.href = 'http://127.0.0.1:5000/'; 
+			window.location.href = '/';
 		});
 });

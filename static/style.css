@@ -4,9 +4,6 @@ body,html{
 	background: rgb(44, 47, 59);
    background: -webkit-linear-gradient(to right, rgb(40, 59, 34), rgb(54, 60, 70), rgb(32, 32, 43));
 	background: linear-gradient(to right, rgb(38, 51, 61), rgb(50, 55, 65), rgb(33, 33, 78));
-	flex-direction: column;
-	justify-content: flex-end; 
-	align-items: center; 
 }
 
 .chat{
@@ -180,13 +177,10 @@ input::-webkit-inner-spin-button {
     margin: 0;
 } */
 
-
-
-
 #logoutForm {
 	width: 100%; 
 	margin: 0; 
-	padding: 0; 
+	padding: 30; 
 	position: absolute;
 	bottom: 0;
 	text-align: center; 
@@ -203,4 +197,4 @@ input::-webkit-inner-spin-button {
 	}				
 			button:hover {
 				background-color: #b0b0b0; 
-			}			
+			}
