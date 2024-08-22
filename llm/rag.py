@@ -51,7 +51,7 @@ def context_retrieve(text, name):
             context.append(result['metadata']['text'])
             # print(f"{round(result['score'], 2)}: {result['metadata']['text']}")
             # print()
-        print("Context RAG finished")
+        print("Articles / use cases RAG finished")
         return context
     
     elif name == "articles":
@@ -79,7 +79,7 @@ def context_retrieve(text, name):
         for result in results['matches']:
             context.append(result['metadata']['text'])
             # print(f"{round(result['score'], 2)}: {result['metadata']['text']}")
-        print("Training RAG finished")
+        print("Guidance data RAG finished")
         return context
 
 
@@ -104,7 +104,7 @@ def guidance_generation(text,llm):
         )
 
         reply = chat.choices[0].message.content
-        print("OpenAI subject response done")
+        print("OpenAI guidance choice response done")
         return reply
     
     elif llm=="2":
@@ -117,7 +117,7 @@ def guidance_generation(text,llm):
             messages=[{"role": "user", "content": text}]
         )
         reply = chat.content[0].text
-        print("Claude subject response done")
+        print("Claude guidance choice response done")
         return reply
     else:
         return "something went wrong."

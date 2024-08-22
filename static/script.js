@@ -45,6 +45,9 @@ document.getElementById('messageArea').addEventListener('submit', function (even
 	document.getElementById("text").value = "";
 	document.getElementById("messageFormeight").insertAdjacentHTML('beforeend', userHtml);
 
+	let loading = '<div id="loading" class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="static/img/open-ai.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">'+'<img src="static/img/loading.gif" width="20" height="20"></img>' +'</div></div>';
+	document.getElementById("messageFormeight").insertAdjacentHTML('beforeend', loading);
+
 	fetch('/get', {
 		method: 'POST',
 		headers: {
@@ -55,7 +58,7 @@ document.getElementById('messageArea').addEventListener('submit', function (even
 	).then(function (data) {
 		let msg = data.response;
 		let botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="static/img/open-ai.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + msg + '<span class="msg_time">' + str_time + '</span></div></div>';
-
+		document.getElementById("loading").remove();
 		document.getElementById("messageFormeight").insertAdjacentHTML('beforeend', botHtml);
 
 
