@@ -81,6 +81,35 @@ def context_retrieve(text, name):
             # print(f"{round(result['score'], 2)}: {result['metadata']['text']}")
         print("Guidance data RAG finished")
         return context
+    
+    elif name == "recipes":
+        pc = Pinecone(api_key=pinecone_api_key)
+        namespace = "data1"
+        index_name = "food"
+        index = pc.Index(index_name)
+
+        # embedd user text
+        vector = client.embeddings.create(
+                model="text-embedding-3-small",
+                input=text,
+                encoding_format="float"
+                ).data[0].embedding
+        
+        # returns the metadata that related to the user embedded text (k=3)
+        results = index.query(
+                namespace=namespace,
+                vector=vector,
+                top_k=3,
+                include_metadata=True,
+                )
+
+        context = []
+        for result in results['matches']:
+            context.append(result['metadata']['text'])
+            # print(f"{round(result['score'], 2)}: {result['metadata']['text']}")
+            # print()
+        print("food RAG finished")
+        return context
 
 
 def guidance_generation(text,llm):

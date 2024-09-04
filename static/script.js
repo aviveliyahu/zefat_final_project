@@ -138,9 +138,9 @@ if (main === "/main") {
 	}).then(function (data){
 			console.log(data)
 			console.log(data[0])
-			if (data[0] === "User") {
+			if (data[0] === "Admin") {
 				let admin = document.querySelector(".admin-section")
-				admin.style.display = "none"
+				admin.style.display = "block"
 			}
 		let add_user_form = document.getElementById("addUserForm");
 		add_user_form.addEventListener("submit",function(event){

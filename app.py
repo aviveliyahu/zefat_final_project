@@ -45,7 +45,58 @@ def llm_choice():
     else:
          return jsonify({"response": "0"})
     
-    
+
+@app.route("/get", methods=["GET", "POST"])
+async def chat():
+    data = request.get_json()
+    msg = data.get("msg")
+
+    if msg == "Save chat.":
+        return save_chat()
+    else:
+        input = msg
+        if field == "Therapy":
+            context_task = asyncio.to_thread(context_retrieve, input, "cases")
+            guidance_task = asyncio.to_thread(guidance_generation, input, llm_model)
+
+            context, guidance = await asyncio.gather(context_task, guidance_task)
+
+            articles = await asyncio.to_thread(context_retrieve, guidance, "articles")
+
+            await asyncio.to_thread(append_message, f"{input}, articles = {articles}, external data:{context}", role="user",field= field)
+            response = await asyncio.to_thread(get_Chat_response, therapy_messages, llm_model)
+            return response
+        elif field == "Food":
+            # context = context_retrieve(input,"recipes")
+            # append_message(f"{input},external recipes:{context}", role="user")
+            # response = get_Chat_response(messages,llm_model)
+            # return response
+            
+            context_task = asyncio.to_thread(context_retrieve, input, "recipes")
+            context = await context_task
+
+            await asyncio.to_thread(append_message, f"{input}, external recipes:{context}", role="user",field= field)
+            
+            response = await asyncio.to_thread(get_Chat_response, food_messages, llm_model)
+            return response
+
+
+def save_chat():
+    answer = "Chat saved!"
+    if field == "Food":        
+        json_string = json.dumps(food_messages,indent=4)
+        current_date_time = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
+        with open(f'data/{current_date_time}.json', 'w') as outfile:
+            outfile.write(json_string)
+        return jsonify({"response": answer})
+    elif field == "Therapy":
+        json_string = json.dumps(therapy_messages,indent=4)
+        current_date_time = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
+        with open(f'data/{current_date_time}.json', 'w') as outfile:
+            outfile.write(json_string)
+        return jsonify({"response": answer})
+
+
 @app.route("/user",methods=["GET", "POST"])
 def user():
     if role != "" and field!="": 
@@ -64,35 +115,6 @@ def add():
     print(field)
     status = insert_user(id_number,name,user_role,field)
     return status
-
-
-@app.route("/get", methods=["GET", "POST"])
-async def chat():
-    data = request.get_json()
-    msg = data.get("msg")
-
-    if msg == "Save chat.":
-        return save_chat()
-    else:
-            input = msg
-            context_task = asyncio.to_thread(context_retrieve, input, "cases")
-            guidance_task = asyncio.to_thread(guidance_generation, input, llm_model)
-
-            context, guidance = await asyncio.gather(context_task, guidance_task)
-
-            articles = await asyncio.to_thread(context_retrieve, guidance, "articles")
-
-            await asyncio.to_thread(append_message, f"{input}, articles = {articles}, external data:{context}", role="user")
-            response = await asyncio.to_thread(get_Chat_response, messages, llm_model)
-            return response
-
-def save_chat():
-    answer = "Chat saved!"
-    json_string = json.dumps(messages,indent=4)
-    current_date_time = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
-    with open(f'data/{current_date_time}.json', 'w') as outfile:
-         outfile.write(json_string)
-    return jsonify({"response": answer})
 
 if __name__ == '__main__':
     app.run()

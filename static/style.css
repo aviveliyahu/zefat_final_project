@@ -201,10 +201,11 @@ button {
 			}
 
 .admin-section {
+	display: none;
 	text-align: center;
 	position: fixed;
-	top: 10%;
-	right: 8%;
+	top: 200px;
+	right: 100px;
 	width: 300px;
 	padding: 15px;
 	background: #f8f9fa;
