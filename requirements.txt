@@ -40,4 +40,3 @@ urllib3==2.2.2
 Werkzeug==3.0.3
 anthropic==0.34.1
 flask[async]==3.0.3
-anthropic==0.34.1
