@@ -130,3 +130,39 @@ document.getElementById('logoutForm').addEventListener('submit', function(event)
 			window.location.href = '/';
 		});
 });
+
+let main = window.location.pathname;
+if (main === "/main") {
+	fetch("/user").then(function (response){
+  		return response.json();
+	}).then(function (data){
+			console.log(data)
+			console.log(data[0])
+			if (data[0] === "User") {
+				let admin = document.querySelector(".admin-section")
+				admin.style.display = "none"
+			}
+		let add_user_form = document.getElementById("addUserForm");
+		add_user_form.addEventListener("submit",function(event){
+		event.preventDefault()
+
+		let data = new FormData(add_user_form)
+		fetch("/add", {
+				method: "POST",
+				body: data
+			})
+			.then(function(response){
+				return response.text();
+			})
+			.then(function(response){
+				console.log("user add")
+				if(response==="OK") {
+		            alert("User added.");
+				}
+				else if (response==="NO"){
+					alert("User ID already exists.");
+				}
+			})
+		})
+	})
+}

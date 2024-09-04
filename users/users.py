@@ -5,7 +5,7 @@ import os
 username = os.getenv('MONGODB_USER')
 password = os.getenv('MONGODB_PASS')
 
-def insert_user(user_id:str,name:str,role:str):
+def insert_user(user_id: str, name: str, role: str, field: str):
     uri = f"mongodb+srv://{username}:{password}@cluster0.5sfu0s0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     client = MongoClient(uri)
 
@@ -14,18 +14,19 @@ def insert_user(user_id:str,name:str,role:str):
     collection = db.users
 
     result = search_user(user_id)
-    if result=="no":
-        docs = {"name": name, "id_number":user_id,"role":role}
+    
+    if result[0] == "no":
+        docs = {"name": name, "id_number": user_id, "role": role, "field": field}
         collection.insert_one(docs)
-        print("Created new user.")
+        client.close()
+        return "OK"
     else:
-        print("User already registered.")
-
-    client.close()
+        client.close()
+        return "NO"
 
 
 # find if user in DB
-def search_user(user_id:str):
+def search_user(user_id: str):
     uri = f"mongodb+srv://{username}:{password}@cluster0.5sfu0s0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     client = MongoClient(uri)
 
@@ -37,6 +38,12 @@ def search_user(user_id:str):
     result = list(cursor)
 
     if not result:
-        return "no"
+        return ["no"]
     else:
-        return "yes"
+        user = result[0]
+        return ["yes",
+                user.get("name", ""),
+                user.get("id_number", ""),
+                user.get("role", ""),
+                user.get("field", "")
+                ]

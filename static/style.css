@@ -185,7 +185,8 @@ input::-webkit-inner-spin-button {
 	bottom: 0;
 	text-align: center; 
 }
-	button {
+
+button {
 		font-size: 16px; 
 		padding: 4px 8px; 
 		border: 2px solid black; 
@@ -198,3 +199,16 @@ input::-webkit-inner-spin-button {
 			button:hover {
 				background-color: #b0b0b0; 
 			}
+
+.admin-section {
+	text-align: center;
+	position: fixed;
+	top: 10%;
+	right: 8%;
+	width: 300px;
+	padding: 15px;
+	background: #f8f9fa;
+	border-left: 1px solid #dee2e6;
+	border-radius: 15px !important;
+	box-shadow: -2px 0 5px rgba(0, 0,0,0.1);
+}

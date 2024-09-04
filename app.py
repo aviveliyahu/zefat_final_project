@@ -6,6 +6,8 @@ from users.users import *
 import asyncio
 
 llm_model = "1"
+role = ""
+field = ""
 
 app = Flask(__name__)
 
@@ -22,13 +24,19 @@ def login():
 @app.route("/llm", methods=["GET", "POST"])
 def llm_choice():
     global llm_model
+    global role
+    global field
+
     data = request.get_json()
     user_id = data.get("user_id")
     choice = data.get("msg")
 
     check_db = search_user(str(user_id))
 
-    if check_db == "yes":
+    if check_db[0] == "yes":
+        role = check_db[3]
+        field = check_db[4]
+
         if choice=="1":
              return jsonify({"response": "/main"})
         elif choice=="2":
@@ -37,6 +45,27 @@ def llm_choice():
     else:
          return jsonify({"response": "0"})
     
+    
+@app.route("/user",methods=["GET", "POST"])
+def user():
+    if role != "" and field!="": 
+        return [role,field]
+    else:
+        return ["no"]
+    
+@app.route("/add",methods=["POST"]) 
+def add():
+    name = request.form.get("name")   
+    id_number = request.form.get("id_number")
+    user_role = request.form.get("role")
+    print(name)
+    print(id_number)
+    print(user_role)
+    print(field)
+    status = insert_user(id_number,name,user_role,field)
+    return status
+
+
 @app.route("/get", methods=["GET", "POST"])
 async def chat():
     data = request.get_json()
