@@ -108,7 +108,7 @@ def context_retrieve(text, name):
             context.append(result['metadata']['text'])
             # print(f"{round(result['score'], 2)}: {result['metadata']['text']}")
             # print()
-        print("food RAG finished")
+        print("Food RAG finished")
         return context
 
 

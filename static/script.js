@@ -64,7 +64,7 @@ document.getElementById('messageArea').addEventListener('submit', function (even
 
 		let chatBox = document.getElementById('messageFormeight');
 		chatBox.scrollTop = chatBox.scrollHeight; // auto scroll to the bottom
-		if (data === "Chat saved!") {
+		if (data === "Chat saved!" || msg === "Unexpected error, contact system admin.") {
 			let inputBox = document.getElementById('text');
 			inputBox.disabled = true;
 			inputBox.placeholder = "Chat ended.";
@@ -74,6 +74,16 @@ document.getElementById('messageArea').addEventListener('submit', function (even
 			document.getElementById("save1").disabled = true;
 			document.getElementById("save1").type = "button";
 		}
+		// else if (){
+		// 	let inputBox = document.getElementById('text');
+		// 	inputBox.disabled = true;
+		// 	inputBox.placeholder = "Chat ended.";
+		// 	document.getElementById("send1").disabled = true;
+		// 	document.getElementById("send1").type = "button";
+
+		// 	document.getElementById("save1").disabled = true;
+		// 	document.getElementById("save1").type = "button";	
+		// };
 	});
 	event.preventDefault();
 });
