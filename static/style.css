@@ -51,13 +51,14 @@ border-radius: 0 0 15px 15px !important;
 }
 .save{
 	display: flex;
-	flex-direction: column;
-	align-items: center;
 	justify-content: center;
+	margin-top: 10px;
+	gap: 10px;
 }
+
 .save_btn{
 	border-radius: 15px !important;
-	background-color: rgba(0,0,0,0.3) !important;
+	background-color: #007bff !important;
 	border:0 !important;
 	color: white !important;
 	cursor: pointer;
@@ -65,9 +66,10 @@ border-radius: 0 0 15px 15px !important;
 	justify-content: center;
 	border: 2px solid black; 
 }
-.save_btn:hover {
+/* .save_btn:hover {
     background-color: #b0b0b0 !important;
-  }
+  } */
+
 #save_text{
 	color:white !important;
 	justify-content: center;
@@ -153,11 +155,6 @@ border-radius: 0 0 15px 15px !important;
 .msg_head{
 	position: relative;
 }
-/* @media(max-width: 576px){
-	.contacts_card{
-	margin-bottom: 15px !important;
-}
-} */
 
 .login{
 	visibility: visible;
@@ -165,34 +162,20 @@ border-radius: 0 0 15px 15px !important;
 	color: rgba(255,255,255,0.6);
 	text-align: center;
 }
-/* .container-fluid{
-	display: none;
 
-} */
 #login_img{
 	height: 200px;
 	width: 200px;
 }
 
-/* For Chrome, Safari, Edge, Opera
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-} */
-
 #logoutForm {
-	width: 100%; 
-	margin: 0; 
-	padding: 30; 
-	position: absolute;
-	bottom: 0;
-	text-align: center; 
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
-button {
+.button {
 		font-size: 16px; 
-		padding: 4px 8px; 
 		border: 2px solid black; 
 		background-color: red;  
 		color: white; 
@@ -200,9 +183,6 @@ button {
 		cursor: pointer; 
 		margin: 0; 
 	}				
-			button:hover {
-				background-color: #b0b0b0; 
-			}
 
 .admin-section {
 	display: none;
@@ -212,10 +192,7 @@ button {
 	right: 10vh;
 	width: 300px;
 	padding: 15px;
-	/* background: #f8f9fa; */
-	/* border-left: 1px solid #dee2e6; */
 	border-radius: 15px !important;
-	/* box-shadow: -2px 0 5px rgba(0, 0,0,0.1); */
 	background-color: rgba(0,0,0,0.4) !important;
 	color: white;
 }
