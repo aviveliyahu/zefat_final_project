@@ -61,9 +61,13 @@ border-radius: 0 0 15px 15px !important;
 	border:0 !important;
 	color: white !important;
 	cursor: pointer;
-	width: 10%;
+	width: 15%;
 	justify-content: center;
+	border: 2px solid black; 
 }
+.save_btn:hover {
+    background-color: #b0b0b0 !important;
+  }
 #save_text{
 	color:white !important;
 	justify-content: center;
@@ -192,7 +196,7 @@ button {
 		border: 2px solid black; 
 		background-color: red;  
 		color: white; 
-		border-radius: 6px; 
+		border-radius: 15px; 
 		cursor: pointer; 
 		margin: 0; 
 	}				
@@ -205,7 +209,7 @@ button {
 	text-align: center;
 	position: fixed;
 	top: 10vh;
-	right: 15vh;
+	right: 10vh;
 	width: 300px;
 	padding: 15px;
 	/* background: #f8f9fa; */
@@ -217,6 +221,10 @@ button {
 }
 #admin_panel{
 	color: #007bff;
+}
+
+#add_user, .btn{
+	border-radius: 15px;
 }
 
 @media screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 768px) and (max-height: 768px) {

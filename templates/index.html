@@ -40,10 +40,13 @@
 								</div>
 							</form>
 							<div class = "save">
-								<div>
-									<p id="save_text">Save chat</p>
-								</div>
-								<button type="submit" id="save1" class="input-group-text save_btn"><i class="far fa-save"></i></button>
+								<button type="submit" id="save1" class="input-group-text save_btn">Save Chat</button>
+								<br>
+								<br>
+								<br>
+								<form id="logoutForm" action="/logout" method="post">
+									<button type="submit">Logout</button>								
+								</form>
 							</div>
 						</div>
 					</div>
@@ -69,11 +72,8 @@
 						<option value="Admin">Admin</option>
 					</select>
 				</div>
-				<button class="btn btn-primary" type="submit">Add User</button>
+				<button class="btn btn-primary" type="submit" id="add_user">Add User</button>
 			</form>
 		</div>
-		<form id="logoutForm" action="/logout" method="post">
-			<button type="submit">Logout</button>								
-		</form>
     </body>
 </html>
