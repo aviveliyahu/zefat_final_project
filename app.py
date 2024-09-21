@@ -8,6 +8,7 @@ import asyncio
 llm_model = "1"
 role = ""
 field = ""
+check_db = []
 
 app = Flask(__name__)
 
@@ -26,7 +27,8 @@ def llm_choice():
     global llm_model
     global role
     global field
-
+    global check_db 
+    
     data = request.get_json()
     user_id = data.get("user_id")
     choice = data.get("msg")
@@ -75,10 +77,16 @@ async def chat():
                 
                 response = await asyncio.to_thread(get_Chat_response, food_messages, llm_model)
                 return response
-        except:
-            reply = "Unexpected error, contact system admin."
-            print("Error when trying to recieve answer from LLM model")
-            return jsonify({"response": reply})
+        except Exception as e:
+                    reply = "Unexpected error, contact system admin."
+                    print("Error occurred.")
+                    try:
+                        print("start insert error")
+                        insert_error(user_id=check_db[2],name=check_db[1],role=check_db[3],field=check_db[4],error=str(e),text=input)
+                        print("done insert error")
+                    except:
+                        return jsonify({"response": reply})
+                    return jsonify({"response":reply})
 
 
 def save_chat():
