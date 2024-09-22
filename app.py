@@ -16,8 +16,10 @@ app = Flask(__name__)
 
 @app.route("/main")
 def ind():
-    user_ip = request.remote_addr
-    return render_template('index.html',user_ip = user_ip)
+    if name == "":
+        return render_template('login.html',user_ip = user_ip)
+    else:
+        return render_template('index.html',user_ip = user_ip)
 
 @app.route("/")
 def login():
