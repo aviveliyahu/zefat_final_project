@@ -9,6 +9,7 @@ llm_model = "1"
 role = ""
 field = ""
 check_db = []
+name = ""
 
 app = Flask(__name__)
 
@@ -28,6 +29,7 @@ def llm_choice():
     global role
     global field
     global check_db 
+    global name
     
     data = request.get_json()
     user_id = data.get("user_id")
@@ -38,6 +40,7 @@ def llm_choice():
     if check_db[0] == "yes":
         role = check_db[3]
         field = check_db[4]
+        name = check_db[1]
 
         if choice=="1":
              return jsonify({"response": "/main"})
@@ -59,6 +62,7 @@ async def chat():
         try:
             input = msg
             if field == "Therapy":
+                append_message(f"user's name: {name}",role="user",field=field)
                 context_task = asyncio.to_thread(context_retrieve, input, "cases")
                 guidance_task = asyncio.to_thread(guidance_generation, input, llm_model)
 
@@ -70,6 +74,7 @@ async def chat():
                 response = await asyncio.to_thread(get_Chat_response, therapy_messages, llm_model)
                 return response
             elif field == "Food":
+                append_message(f"user's name: {name}",role="user",field=field)
                 context_task = asyncio.to_thread(context_retrieve, input, "recipes")
                 context = await context_task
 
@@ -108,7 +113,7 @@ def save_chat():
 @app.route("/user",methods=["GET", "POST"])
 def user():
     if role != "" and field!="": 
-        return [role,field]
+        return [role,field,name]
     else:
         return ["no"]
     

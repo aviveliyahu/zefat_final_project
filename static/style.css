@@ -7,7 +7,7 @@ body,html{
 }
 
 .chat{
-	margin-top: auto;
+	top: 10%;
 	margin-bottom: auto;
 }
 .card{
@@ -188,7 +188,7 @@ border-radius: 0 0 15px 15px !important;
 	display: none;
 	text-align: center;
 	position: fixed;
-	top: 10vh;
+	top: 21%;
 	right: 5vh;
 	width: 300px;
 	padding: 15px;
@@ -202,6 +202,13 @@ border-radius: 0 0 15px 15px !important;
 
 #add_user, .btn{
 	border-radius: 15px;
+}
+
+#hellouser{
+	color: rgba(255,255,255,0.6);
+	align-items: center;
+	text-align: center;
+	font-size: 40px;
 }
 
 @media screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 768px) and (max-height: 768px) {

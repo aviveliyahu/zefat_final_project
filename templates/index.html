@@ -14,63 +14,67 @@
 	
 	
 	<body>
-		<div class="container-fluid h-100">
-			<div class="row justify-content-center h-100">		
-				<div class="col-md-8 col-xl-6 chat">
-					<div class="card">
-						<div class="card-header msg_head">
-							<div class="d-flex bd-highlight">
-								<div class="img_cont">
-									<span class="online_icon"></span>
-								</div>
-								<div class="user_info">
-									<span>ChatBot Assistant Project</span>
-									<p>Ask me anything! (alpha)</p>
+		<br>
+		<div id="hellouser"></div>
+		<div>
+			<div class="container-fluid h-100">
+				<div class="row justify-content-center h-100">		
+					<div class="col-md-8 col-xl-6 chat">
+						<div class="card">
+							<div class="card-header msg_head">
+								<div class="d-flex bd-highlight">
+									<div class="img_cont">
+										<span class="online_icon"></span>
+									</div>
+									<div class="user_info">
+										<span>ChatBot Assistant Project</span>
+										<p>Ask me anything! (alpha)</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div id="messageFormeight" class="card-body msg_card_body">
-							
-						</div>
-						<div class="card-footer">
-							<form id="messageArea" class="input-group">
-                                <input type="text" id="text" name="msg" placeholder="Enter your question here" autocomplete="off" class="form-control type_msg"/>
-								<div class="input-group-append">
-									<button type="submit" id="send1" class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></button>
-								</div>
-							</form>
-							<div class="save">
-								<button type="submit" id="save1" class="btn btn-primary save_btn">Save Chat</button>
-								<form id="logoutForm" action="/logout" method="post">
-									<button type="submit" class="btn btn-danger">Logout</button>                        
+							<div id="messageFormeight" class="card-body msg_card_body">
+								
+							</div>
+							<div class="card-footer">
+								<form id="messageArea" class="input-group">
+									<input type="text" id="text" name="msg" placeholder="Enter your question here" autocomplete="off" class="form-control type_msg"/>
+									<div class="input-group-append">
+										<button type="submit" id="send1" class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></button>
+									</div>
 								</form>
+								<div class="save">
+									<button type="submit" id="save1" class="btn btn-primary save_btn">Save Chat</button>
+									<form id="logoutForm" action="/logout" method="post">
+										<button type="submit" class="btn btn-danger">Logout</button>                        
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="admin-section"> 
-			<h3 id="admin_panel">Admin Panel</h3>
-			<h6><u>Add new user</u></h6>
-			<form id="addUserForm">
-				<div class="form-group">
-					<label for="name">Name</label>
-					<input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
-				</div>
-				<div class="form-group">
-					<label for="id_number">ID Number</label>
-					<input type="number" id="id_number" name="id_number" class="form-control" placeholder="ID number" required>
-				</div>
-				<div class="form-group">
-					<label for="role">Role</label>
-					<select id="role" name="role" class="form-control" required>
-						<option value="User">User</option>
-						<option value="Admin">Admin</option>
-					</select>
-				</div>
-				<button class="btn btn-primary" type="submit" id="add_user">Add User</button>
-			</form>
-		</div>
+			<div class="admin-section"> 
+				<h3 id="admin_panel">Admin Panel</h3>
+				<h6><u>Add new user</u></h6>
+				<form id="addUserForm">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+					</div>
+					<div class="form-group">
+						<label for="id_number">ID Number</label>
+						<input type="number" id="id_number" name="id_number" class="form-control" placeholder="ID number" required>
+					</div>
+					<div class="form-group">
+						<label for="role">Role</label>
+						<select id="role" name="role" class="form-control" required>
+							<option value="User">User</option>
+							<option value="Admin">Admin</option>
+						</select>
+					</div>
+					<button class="btn btn-primary" type="submit" id="add_user">Add User</button>
+				</form>
+			</div>
+		</div>>
     </body>
 </html>

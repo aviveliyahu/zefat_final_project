@@ -147,7 +147,9 @@ if (main === "/main") {
   		return response.json();
 	}).then(function (data){
 			console.log(data)
-			console.log(data[0])
+			// console.log(data[0])
+			let hellodiv = document.getElementById("hellouser");
+			hellodiv.innerHTML="Welcome " + data[2];
 			if (data[0] === "Admin") {
 				let admin = document.querySelector(".admin-section")
 				admin.style.display = "block"
