@@ -3,7 +3,6 @@ from .rag import *
 from dotenv import load_dotenv
 import anthropic
 import os
-from app import getname
 
 load_dotenv()
 openai_api_key = os.getenv('OPENAI_KEY')

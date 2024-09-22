@@ -54,6 +54,7 @@ def llm_choice():
 
 @app.route("/get", methods=["GET", "POST"])
 async def chat():
+    global name_check
     data = request.get_json()
     msg = data.get("msg")
 
