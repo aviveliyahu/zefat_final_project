@@ -17,9 +17,9 @@ app = Flask(__name__)
 @app.route("/main")
 def ind():
     if name == "":
-        return render_template('login.html',user_ip = user_ip)
+        return render_template('login.html')
     else:
-        return render_template('index.html',user_ip = user_ip)
+        return render_template('index.html')
 
 @app.route("/")
 def login():
