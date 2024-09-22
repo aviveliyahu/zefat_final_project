@@ -65,6 +65,7 @@ async def chat():
             if field == "Therapy":
                 if name_check == False:
                     append_message(f"user's name: {name}",role="user",field=field)
+                    name_check = True
                 context_task = asyncio.to_thread(context_retrieve, input, "cases")
                 guidance_task = asyncio.to_thread(guidance_generation, input, llm_model)
 
@@ -78,6 +79,7 @@ async def chat():
             elif field == "Food":
                 if name_check == False:
                     append_message(f"user's name: {name}",role="user",field=field)
+                    name_check = True
                 context_task = asyncio.to_thread(context_retrieve, input, "recipes")
                 context = await context_task
 
