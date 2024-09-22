@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json, jsonify
+from flask import Flask, render_template, request, json, jsonify, redirect
 from datetime import datetime
 from llm.rag import *
 from llm.response import *
@@ -17,7 +17,7 @@ app = Flask(__name__)
 @app.route("/main")
 def ind():
     if name == "":
-        return render_template('login.html')
+        return redirect("/")
     else:
         return render_template('index.html')
 
