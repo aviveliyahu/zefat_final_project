@@ -10,6 +10,7 @@ role = ""
 field = ""
 check_db = []
 name = ""
+name_check = False
 
 app = Flask(__name__)
 
@@ -62,7 +63,8 @@ async def chat():
         try:
             input = msg
             if field == "Therapy":
-                append_message(f"user's name: {name}",role="user",field=field)
+                if name_check == False:
+                    append_message(f"user's name: {name}",role="user",field=field)
                 context_task = asyncio.to_thread(context_retrieve, input, "cases")
                 guidance_task = asyncio.to_thread(guidance_generation, input, llm_model)
 
@@ -74,7 +76,8 @@ async def chat():
                 response = await asyncio.to_thread(get_Chat_response, therapy_messages, llm_model)
                 return response
             elif field == "Food":
-                append_message(f"user's name: {name}",role="user",field=field)
+                if name_check == False:
+                    append_message(f"user's name: {name}",role="user",field=field)
                 context_task = asyncio.to_thread(context_retrieve, input, "recipes")
                 context = await context_task
 
