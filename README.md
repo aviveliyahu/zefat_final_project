@@ -4,13 +4,6 @@ Each type of user group has its own designated prompt, database and information 
 There are also two types of users - regular and admin. both have the same chat screen but admins also has admin panel to create new users as admins or regular users - the group is set automatically (corresponds to the admin's type of group)<br>
 User can also save the chat (locally) in order to re-read the conversation he had.
 <br>
-<h4>Here are some pictures of the project running</h4>
-<h5>Login page picture</h5>
-![login](https://github.com/user-attachments/assets/d3d197e2-3a80-49d5-90c7-df3178a55f34)
-
-<h5>Main page (with admin panel)</h5>
-![main](https://github.com/user-attachments/assets/e9f412ee-6141-45ab-b32c-35a984bcd37c)
-
 In order to run the project, use the following steps:
 1. clone project
 2. create a virtual environment : python -m venv venv
@@ -29,3 +22,12 @@ In order to run the project, use the following steps:
    * RECIPES_INDEX
 7. run app.py
 8. enjoy!
+
+<h4>Here are some pictures of the project running</h4>
+<h5>Login page picture</h5>
+<img src="login.png">
+
+<h5>Main page (with admin panel)</h5>
+<img src="main.png">
+
+
