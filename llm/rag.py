@@ -12,8 +12,8 @@ pinecone_api_key = os.getenv('PINECONE_KEY')
 claude_api_key = os.getenv('CLAUDE_KEY')
 
 pc = Pinecone(api_key=pinecone_api_key)
-namespace = "data1"
-index_name = "embedata"
+namespace = os.getenv('NAMESPACE')
+index_name = os.getenv('CASES_INDEX')
 index = pc.Index(index_name)
 
 client = OpenAI(api_key=openai_api_key)
@@ -27,8 +27,8 @@ embeddings = OpenAIEmbeddings(
 def context_retrieve(text, name):
     if name == "cases":
         pc = Pinecone(api_key=pinecone_api_key)
-        namespace = "data1"
-        index_name = "embedata"
+        namespace = os.getenv('NAMESPACE')
+        index_name = os.getenv("CASES_INDEX")
         index = pc.Index(index_name)
 
         # embedd user text
@@ -40,7 +40,7 @@ def context_retrieve(text, name):
         
         # returns the metadata that related to the user embedded text (k=3)
         results = index.query(
-                namespace=namespace,
+                namespace=os.getenv('NAMESPACE'),
                 vector=vector,
                 top_k=3,
                 include_metadata=True,
@@ -56,8 +56,8 @@ def context_retrieve(text, name):
     
     elif name == "articles":
         pc = Pinecone(api_key=pinecone_api_key)
-        namespace = "data1"
-        index_name = "training"
+        namespace = os.getenv('NAMESPACE')
+        index_name = os.getenv("ARTICLES_INDEX")
         index = pc.Index(index_name)
 
         # embedd user text
@@ -69,7 +69,7 @@ def context_retrieve(text, name):
         
         # returns the metadata that related to the user embedded text (k=3)
         results = index.query(
-                namespace=namespace,
+                namespace=os.getenv('NAMESPACE'),
                 vector=vector,
                 top_k=3,
                 include_metadata=True,
@@ -84,8 +84,8 @@ def context_retrieve(text, name):
     
     elif name == "recipes":
         pc = Pinecone(api_key=pinecone_api_key)
-        namespace = "data1"
-        index_name = "food"
+        namespace = os.getenv('NAMESPACE')
+        index_name = os.getenv("RECIPES_INDEX")
         index = pc.Index(index_name)
 
         # embedd user text
@@ -97,7 +97,7 @@ def context_retrieve(text, name):
         
         # returns the metadata that related to the user embedded text (k=3)
         results = index.query(
-                namespace=namespace,
+                namespace=os.getenv('NAMESPACE'),
                 vector=vector,
                 top_k=3,
                 include_metadata=True,
